@@ -1,0 +1,43 @@
+<html lang="fr">
+    <head>
+    <title>Cours de ju</title>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    </head>
+    <body>
+        <div class="container">
+        <h1>Cours de Vue.js</h1>
+        <button type="button" @click="recuperepost" class="btn btn-success">Bouton</button>
+        <p>texte</p> 
+        </div>
+        <script>
+        var app = new Vue({
+    el: '#app',
+    data: {
+      message: 'Hello Vue !',
+      posts: []
+    },
+    methods: {
+                recuperepost: function(){
+                    vm = this
+                    
+                
+                fetch('https://webandsun.com/wp-json/wp/v2/posts')
+                .then(
+                    function(response){
+                    response.json()
+                    .then(function(response){
+                        vm.posts = response
+                        console.log(response)
+                    });
+                })
+            }
+        }
+  });
+                
+   
+            </script>
+        </body>
+    </html>
